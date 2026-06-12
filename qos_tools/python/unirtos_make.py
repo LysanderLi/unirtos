@@ -321,7 +321,7 @@ def run_cmake_and_ninja(root: Path, env, toolchain_root: Path, python_exe: Path)
     current_build_dir = build_dir(root)
     cmake_exe = toolchain_root / "cmake-3.28.0" / "bin" / "cmake.exe"
     ninja_exe = toolchain_root / "ninja-win-1.12.1" / "ninja.exe"
-    print("build step 11111111")
+
     run_command(
         [
             str(cmake_exe),
@@ -337,7 +337,6 @@ def run_cmake_and_ninja(root: Path, env, toolchain_root: Path, python_exe: Path)
         label="cmake configure",
         exit_code=EXIT_CMAKE_ERROR,
     )
-    print("build step 22222222222222222")
     run_command(
         [str(ninja_exe), f"-j{env['build_tasknum']}"],
         cwd=current_build_dir,
