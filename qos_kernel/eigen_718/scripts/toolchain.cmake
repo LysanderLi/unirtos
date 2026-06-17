@@ -30,6 +30,9 @@ message("-----chip_type=${chip_type}--PKG_PRODUCT=${PKG_PRODUCT}---")
 
 set(FIRMWARE_7Z "${UNIRTOS_BUILD_OUT}/gccout/images/firmware_base_release_pack.7z")
 set(FIRMWARE_DIR "${UNIRTOS_BUILD_OUT}/gccout/images/firmware_base_release_pack")
+set(FIRMWARE_REQUIRED_FILE_1 "${FIRMWARE_DIR}/tmp/ap_bootloader.bin")
+set(FIRMWARE_REQUIRED_FILE_2 "${FIRMWARE_DIR}/tmp/ap_at_command.bin")
+set(FIRMWARE_REQUIRED_FILE_3 "${FIRMWARE_DIR}/tmp/cp-demo-flash.bin")
 
 # Load all header file paths on the platform side
 include_directories(${EIGEN718_CSDK_COMMON}/prebuild/ps/inc)
@@ -107,13 +110,18 @@ set(AP_MAP ${BINARY_BIN_DIR}/ap_application.map)
 set(OUTPUT_RELEASE_DIR "${UNIRTOS_BUILD_OUT}/release")
 
 if(NOT unirtos_csdk_build STREQUAL "y")
-execute_process(
-    COMMAND ${CMAKE_COMMAND} -E remove_directory ${FIRMWARE_DIR}
-    COMMAND "${7Z_EXE}" x -y "${FIRMWARE_7Z}" "-o${FIRMWARE_DIR}"
-    RESULT_VARIABLE unzip_result
-)
-if(NOT unzip_result EQUAL 0)
-    message(FATAL_ERROR "Failed to extract archive.7z")
+if(NOT EXISTS "${FIRMWARE_REQUIRED_FILE_1}" OR NOT EXISTS "${FIRMWARE_REQUIRED_FILE_2}" OR NOT EXISTS "${FIRMWARE_REQUIRED_FILE_3}")
+    message(STATUS "Extracting base firmware package: ${FIRMWARE_7Z}")
+    execute_process(
+        COMMAND ${CMAKE_COMMAND} -E remove_directory ${FIRMWARE_DIR}
+        COMMAND "${7Z_EXE}" x -y -aoa "${FIRMWARE_7Z}" "-o${FIRMWARE_DIR}"
+        RESULT_VARIABLE unzip_result
+    )
+    if(NOT unzip_result EQUAL 0)
+        message(FATAL_ERROR "Failed to extract archive.7z")
+    endif()
+else()
+    message(STATUS "Reusing extracted base firmware package: ${FIRMWARE_DIR}")
 endif()
 endif()
 
