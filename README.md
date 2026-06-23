@@ -47,7 +47,7 @@ Verify the environment:
 python --version # Python3
 git --version
 unirtos --version # 1.0.5 or later
-unirtos-cli version # 1.0.8 or later
+unirtos-cli version # 1.0.9 or later
 ```
 
 ### 2. Create a Project with unirtos-cli
@@ -81,6 +81,7 @@ unirtos-cli clean
 
 ### Build Outputs
 - Build outputs are generated in `qos_build/release/<version>/` under the project directory.
+- `<version>` is resolved in this order: use the name passed by `unirtos-cli build -v/--version` first; if not provided, use `build.version` from `env_config.json`; otherwise, use the app root folder name (the folder containing `env_config.json`).
 
 ## Community Forum
 [Visit the Forum](https://forumschinese.quectel.com/c/66-category/66)
