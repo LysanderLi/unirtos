@@ -556,6 +556,7 @@ include_directories(${QL_COMPONENTS_DIR}/system/public_comp/license)
 include_directories(${QL_COMPONENTS_DIR}/system/cam)
 include_directories(${QL_COMPONENTS_DIR}/system/secboot)
 include_directories(${QL_COMPONENTS_DIR}/system/vsim_adapt)
+include_directories(${QL_COMPONENTS_DIR}/system/version)
 include_directories(${QL_DEMO_DIR}/app_init)
 
 # Conditional include paths for menuconfig-driven component targets (global scope)
