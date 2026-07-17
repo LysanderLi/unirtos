@@ -10,7 +10,7 @@ extern "C" {
 /* Hardcoded SDK version — the single source of truth. */
 #define QOSA_SDK_VERSION_MAJOR 1
 #define QOSA_SDK_VERSION_MINOR 0
-#define QOSA_SDK_VERSION_PATCH 3
+#define QOSA_SDK_VERSION_PATCH 4
 
 #define QOSA_STRINGIFY_HELPER(x) #x
 #define QOSA_STRINGIFY(x) QOSA_STRINGIFY_HELPER(x)
