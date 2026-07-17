@@ -21,6 +21,11 @@ QOSA_INLINE const char *qosa_sdk_get_version(void)
     return QOSA_SDK_VERSION_TAG;
 }
 
+QOSA_INLINE const char *qosa_get_fw_version(void)
+{
+    return QOSA_FIRMWARE_VERSION;
+}
+
 #ifdef __cplusplus
 }
 #endif
