@@ -517,6 +517,9 @@ if(CONFIG_QAPP_UNIRTOS_STD_FUNC)
     configure_file(${QL_DEMO_DIR}/unirtos_std/inc/unirtos_atcmd_cfg.h.in ${out_inc_dir}/unirtos_atcmd_cfg.h)
 endif()
 
+# Add build version macro definition for firmware versioning
+add_definitions(-DQOSA_FIRMWARE_VERSION="${build_version}")
+
 # Load public .h header file paths needed during compilation
 include_directories(${BINARY_TOP_DIR})
 include_directories(${UNIRTOS_DIR})
@@ -556,6 +559,7 @@ include_directories(${QL_COMPONENTS_DIR}/system/public_comp/license)
 include_directories(${QL_COMPONENTS_DIR}/system/cam)
 include_directories(${QL_COMPONENTS_DIR}/system/secboot)
 include_directories(${QL_COMPONENTS_DIR}/system/vsim_adapt)
+include_directories(${QL_COMPONENTS_DIR}/system/version)
 include_directories(${QL_DEMO_DIR}/app_init)
 
 # Conditional include paths for menuconfig-driven component targets (global scope)
